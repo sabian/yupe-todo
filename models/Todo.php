@@ -28,6 +28,7 @@ class Todo extends YModel
             ['description', 'required'],
             ['description', 'length', 'max' => 255],
             ['status, sort', 'numerical', 'integerOnly' => true],
+            ['description, sort', 'safe', 'on' => 'search'],
         ];
     }
 
@@ -41,5 +42,23 @@ class Todo extends YModel
             'status' => 'Статус',
             'sort' => 'Сортировка',
         ];
+    }
+
+    /**
+     * @return CActiveDataProvider
+     */
+    public function search()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('description', $this->description, true);
+        $criteria->compare('status', $this->status);
+
+        return new CActiveDataProvider(get_class($this), [
+            'criteria' => $criteria,
+            'sort' => [
+                'defaultOrder' => 'sort'
+            ]
+        ]);
     }
 }
