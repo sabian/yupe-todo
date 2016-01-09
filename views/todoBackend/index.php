@@ -8,7 +8,10 @@ $this->pageTitle = 'ToDo - Список';
 
 $this->breadcrumbs = [ $this->pageTitle ];
 
-
+$this->menu = [
+    ['icon' => 'fa fa-fw fa-list-alt', 'label' => 'Список задач', 'url' => ['/todo/todoBackend/index']],
+    ['icon' => 'fa fa-fw fa-plus-square', 'label' => 'Создать задачу', 'url' => ['/todo/todoBackend/create']],
+];
 ?>
 <div class="page-header">
     <h1><?= $this->pageTitle ?></h1>

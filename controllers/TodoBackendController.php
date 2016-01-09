@@ -1,4 +1,5 @@
 <?php
+use yupe\widgets\YFlashMessages;
 use yupe\components\controllers\BackController;
 
 /**
@@ -18,5 +19,23 @@ class TodoBackendController extends BackController
         }
 
         $this->render('index', ['model' => $model]);
+    }
+
+    public function actionCreate()
+    {
+        $model = new Todo();
+
+        if ($data = Yii::app()->getRequest()->getPost('Todo')) {
+
+            $model->setAttributes($data);
+
+            if ($model->save()) {
+                Yii::app()->user->setFlash(YFlashMessages::SUCCESS_MESSAGE, 'Задача успешно добавлена');
+
+                $this->redirect((array)Yii::app()->getRequest()->getPost('submit-type', ['create']));
+            }
+        }
+
+        $this->render('create', ['model' => $model]);
     }
 }
