@@ -16,8 +16,15 @@ $form = $this->beginWidget('\yupe\widgets\ActiveForm', [
     <?= $form->errorSummary($model); ?>
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8">
             <?= $form->textFieldGroup($model, 'description'); ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->dropDownListGroup($model, 'status', [
+                'widgetOptions' => [
+                    'data' => TodoStatusHelper::getList(),
+                ],
+            ]); ?>
         </div>
     </div>
 

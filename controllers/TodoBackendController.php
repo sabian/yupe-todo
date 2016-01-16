@@ -17,6 +17,19 @@ class TodoBackendController extends BackController
         );
     }
 
+    public function actions()
+    {
+        return [
+            'inline' => [
+                'class' => 'yupe\components\actions\YInLineEditAction',
+                'model' => 'Todo',
+                'validAttributes' => [
+                    'status',
+                ]
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $model = new Todo('search');

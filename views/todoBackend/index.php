@@ -25,7 +25,18 @@ $this->menu = [
         'columns' => [
             'id',
             'description',
-            'status',
+            [
+                'name' => 'status',
+                'class' => 'yupe\widgets\EditableStatusColumn',
+                'url' => $this->createUrl('/todo/todoBackend/inline'),
+                'source' => TodoStatusHelper::getList(),
+                'options' => TodoStatusHelper::getStylesList(),
+                'filter' => CHtml::activeDropDownList($model, 'status', TodoStatusHelper::getList(), [
+                    'encode' => false,
+                    'empty' => '',
+                    'class' => 'form-control',
+                ]),
+            ],
             [
                 'class' => 'yupe\widgets\CustomButtonColumn',
                 'template' => '{update} {delete}'
