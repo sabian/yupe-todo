@@ -20,6 +20,10 @@ $this->menu = [
 <?php $this->widget('yupe\widgets\CustomGridView', [
         'id' => 'todo-grid',
         'type' => 'condensed',
+        'sortableRows' => true,
+        'sortableAjaxSave' => true,
+        'sortableAttribute' => 'sort',
+        'sortableAction' => '/todo/todoBackend/sortable',
         'dataProvider' => $model->search(),
         'filter' => $model,
         'columns' => [

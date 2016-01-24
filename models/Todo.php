@@ -44,6 +44,18 @@ class Todo extends YModel
         ];
     }
 
+    protected function beforeSave()
+    {
+        if ($this->isNewRecord) {
+            $this->sort = Yii::app()->db->createCommand()
+                ->select('MAX(sort) + 1')
+                ->from($this->tableName())
+                ->queryScalar();
+        }
+
+        return parent::beforeSave();
+    }
+
     /**
      * @return CActiveDataProvider
      */

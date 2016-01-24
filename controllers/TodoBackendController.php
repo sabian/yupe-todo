@@ -27,6 +27,11 @@ class TodoBackendController extends BackController
                     'status',
                 ]
             ],
+            'sortable' => [
+                'class' => 'yupe\components\actions\SortAction',
+                'model' => 'Todo',
+                'attribute' => 'sort',
+            ]
         ];
     }
 
