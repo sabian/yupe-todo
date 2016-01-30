@@ -73,4 +73,14 @@ class Todo extends YModel
             ]
         ]);
     }
+
+    /**
+     * Count all unfinished tasks
+     *
+     * @return int
+     */
+    public function countUnfinished()
+    {
+        return self::model()->count('status != :status', [':status' => TodoStatusHelper::STATUS_DONE]);
+    }
 }

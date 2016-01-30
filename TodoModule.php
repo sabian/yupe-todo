@@ -90,4 +90,21 @@ class TodoModule extends WebModule
             ],
         ];
     }
+
+    public function checkSelf()
+    {
+        $messages = [];
+        $count = Todo::model()->countUnfinished();
+
+        if(!$count) {
+            return false;
+        }
+
+        $messages[WebModule::CHECK_NOTICE][] = [
+            'type' => WebModule::CHECK_NOTICE,
+            'message' => CHtml::link('Невыполненных задач - ' . $count, ['/todo/todoBackend/index']),
+        ];
+
+        return $messages;
+    }
 }
